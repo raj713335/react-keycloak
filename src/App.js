@@ -1,7 +1,19 @@
 import logo from './logo.svg';
 import './App.css';
+import { Api } from "./Api.js";
+
 
 function App() {
+
+    const callKeycloak = async () => {
+
+        Api.get("/secure").then(
+            response => {
+                console.log(response.data);
+            }
+        ).catch(error => { console.log(error) })
+    }
+
   return (
     <div className="App">
       <header className="App-header">
@@ -9,14 +21,15 @@ function App() {
         <p>
           Edit <code>src/App.js</code> and save to reload.
         </p>
-        <a
+              <button
           className="App-link"
           href="https://reactjs.org"
           target="_blank"
-          rel="noopener noreferrer"
+                  rel="noopener noreferrer"
+                  onClick={callKeycloak}
         >
           Learn React
-        </a>
+        </button>
       </header>
     </div>
   );
